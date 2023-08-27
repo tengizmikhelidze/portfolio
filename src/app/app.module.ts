@@ -1,4 +1,4 @@
-import { NgModule, isDevMode } from '@angular/core';
+import {NgModule, isDevMode, APP_INITIALIZER} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,6 +9,9 @@ import { provideAnalytics,getAnalytics,ScreenTrackingService,UserTrackingService
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import {ConfigService} from "../config/config.service";
+import {appInitializerFn} from "../config/app-initializer";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -17,6 +20,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAnalytics(() => getAnalytics()),
     provideAuth(() => getAuth()),
@@ -29,6 +33,13 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     })
   ],
   providers: [
+    ConfigService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: appInitializerFn,
+      multi: true,
+      deps: [ConfigService]
+    },
     ScreenTrackingService,UserTrackingService
   ],
   bootstrap: [AppComponent]

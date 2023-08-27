@@ -1,4 +1,6 @@
-export const environment = {
+import {AppConfig} from "../config/app-config";
+
+export const environment: AppConfig = {
   firebase: {
     projectId: 'portfolio-10g',
     appId: '1:51483704937:web:b3abfa94af8079b4deacf8',
