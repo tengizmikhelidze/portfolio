@@ -1,0 +1,18 @@
+$textColor_light: black;
+$textColor_dark: white;
+// mixin that enables css variables in light mode
+@mixin lighten() {
+  --textColor: #{$textColor_light};
+}
+
+// mixin that enables css variables in dark mode
+@mixin darken() {
+  --textColor: #{$textColor_dark};
+}
+
+body.dark {
+  @include darken();
+}
+body.light {
+  @include lighten();
+}
