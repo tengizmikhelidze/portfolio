@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { WordleRoutingModule } from './wordle-routing.module';
 import { WordleComponent } from './wordle.component';
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { WordleComponent } from './wordle.component';
   ],
   imports: [
     CommonModule,
-    WordleRoutingModule
+    WordleRoutingModule,
+    FontAwesomeModule
   ]
 })
 export class WordleModule { }
