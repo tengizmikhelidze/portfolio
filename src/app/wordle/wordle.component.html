@@ -105,43 +105,110 @@
           </div>
         </div>
       </div>
-      <fa-icon [icon]="settingsIcon" class="settings-icon"></fa-icon>
+      <fa-icon [icon]="settingsIcon" class="settings-icon" (click)="showSettings = !showSettings"></fa-icon>
     </div>
     <div class="keyboard-wrapper">
-      <div class="keyboard-row keyboard-row-1">
-        <button data-key="q" type="button" class="keyboard-button keyboard-button-q">q</button>
-        <button data-key="w" type="button" class="keyboard-button keyboard-button-w">w</button>
-        <button data-key="e" type="button" class="keyboard-button keyboard-button-e">e</button>
-        <button data-key="r" type="button" class="keyboard-button keyboard-button-r">r</button>
-        <button data-key="t" type="button" class="keyboard-button keyboard-button-t">t</button>
-        <button data-key="y" type="button" class="keyboard-button keyboard-button-y">y</button>
-        <button data-key="u" type="button" class="keyboard-button keyboard-button-u">u</button>
-        <button data-key="i" type="button" class="keyboard-button keyboard-button-i">i</button>
-        <button data-key="o" type="button" class="keyboard-button keyboard-button-o">o</button>
-        <button data-key="p" type="button" class="keyboard-button keyboard-button-p">p</button>
-      </div>
-      <div class="keyboard-row keyboard-row-2">
-        <button data-key="a" type="button" class="keyboard-button keyboard-button-a">a</button>
-        <button data-key="s" type="button" class="keyboard-button keyboard-button-s">s</button>
-        <button data-key="d" type="button" class="keyboard-button keyboard-button-d">d</button>
-        <button data-key="f" type="button" class="keyboard-button keyboard-button-f">f</button>
-        <button data-key="g" type="button" class="keyboard-button keyboard-button-g">g</button>
-        <button data-key="h" type="button" class="keyboard-button keyboard-button-h">h</button>
-        <button data-key="j" type="button" class="keyboard-button keyboard-button-j">j</button>
-        <button data-key="k" type="button" class="keyboard-button keyboard-button-k">k</button>
-        <button data-key="l" type="button" class="keyboard-button keyboard-button-ol">l</button>
-      </div>
-      <div class="keyboard-row keyboard-row-3">
-        <button data-key="ENTER" type="button" class="keyboard-button keyboard-button-ENTER">ENTER</button>
-        <button data-key="z" type="button" class="keyboard-button keyboard-button-z">z</button>
-        <button data-key="x" type="button" class="keyboard-button keyboard-button-x">x</button>
-        <button data-key="c" type="button" class="keyboard-button keyboard-button-c">c</button>
-        <button data-key="v" type="button" class="keyboard-button keyboard-button-v">v</button>
-        <button data-key="b" type="button" class="keyboard-button keyboard-button-b">b</button>
-        <button data-key="n" type="button" class="keyboard-button keyboard-button-n">n</button>
-        <button data-key="m" type="button" class="keyboard-button keyboard-button-m">m</button>
-        <fa-icon [icon]="backspaceIcon" data-key="Backspace" class="keyboard-button keyboard-button-Backspace"></fa-icon>
-      </div>
+      <ng-container [ngSwitch]="wordleLanguage">
+        <ng-container *ngSwitchDefault>
+          <div class="keyboard-row keyboard-row-1">
+            <button data-key="q" type="button" class="keyboard-button keyboard-button-q">q</button>
+            <button data-key="w" type="button" class="keyboard-button keyboard-button-w">w</button>
+            <button data-key="e" type="button" class="keyboard-button keyboard-button-e">e</button>
+            <button data-key="r" type="button" class="keyboard-button keyboard-button-r">r</button>
+            <button data-key="t" type="button" class="keyboard-button keyboard-button-t">t</button>
+            <button data-key="y" type="button" class="keyboard-button keyboard-button-y">y</button>
+            <button data-key="u" type="button" class="keyboard-button keyboard-button-u">u</button>
+            <button data-key="i" type="button" class="keyboard-button keyboard-button-i">i</button>
+            <button data-key="o" type="button" class="keyboard-button keyboard-button-o">o</button>
+            <button data-key="p" type="button" class="keyboard-button keyboard-button-p">p</button>
+          </div>
+          <div class="keyboard-row keyboard-row-2">
+            <button data-key="a" type="button" class="keyboard-button keyboard-button-a">a</button>
+            <button data-key="s" type="button" class="keyboard-button keyboard-button-s">s</button>
+            <button data-key="d" type="button" class="keyboard-button keyboard-button-d">d</button>
+            <button data-key="f" type="button" class="keyboard-button keyboard-button-f">f</button>
+            <button data-key="g" type="button" class="keyboard-button keyboard-button-g">g</button>
+            <button data-key="h" type="button" class="keyboard-button keyboard-button-h">h</button>
+            <button data-key="j" type="button" class="keyboard-button keyboard-button-j">j</button>
+            <button data-key="k" type="button" class="keyboard-button keyboard-button-k">k</button>
+            <button data-key="l" type="button" class="keyboard-button keyboard-button-ol">l</button>
+          </div>
+          <div class="keyboard-row keyboard-row-3">
+            <button (click)="submitWord()" data-key="ENTER" type="submit" class="keyboard-button keyboard-button-ENTER">ENTER</button>
+            <button data-key="z" type="button" class="keyboard-button keyboard-button-z">z</button>
+            <button data-key="x" type="button" class="keyboard-button keyboard-button-x">x</button>
+            <button data-key="c" type="button" class="keyboard-button keyboard-button-c">c</button>
+            <button data-key="v" type="button" class="keyboard-button keyboard-button-v">v</button>
+            <button data-key="b" type="button" class="keyboard-button keyboard-button-b">b</button>
+            <button data-key="n" type="button" class="keyboard-button keyboard-button-n">n</button>
+            <button data-key="m" type="button" class="keyboard-button keyboard-button-m">m</button>
+            <button #backSpaceKey data-key="Backspace" class="keyboard-button keyboard-button-Backspace">
+              <fa-icon (click)="backSpaceKey.click()" [icon]="backspaceIcon"></fa-icon>
+            </button>
+          </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="'geo'">
+          <div class="keyboard-row keyboard-row-1">
+            <button data-key="ქ" type="button" class="keyboard-button keyboard-button-q">ქ</button>
+            <button data-key="წ" type="button" class="keyboard-button keyboard-button-w">წ</button>
+            <button data-key="ჭ" type="button" class="keyboard-button keyboard-button-w">ჭ</button>
+            <button data-key="ე" type="button" class="keyboard-button keyboard-button-e">ე</button>
+            <button data-key="რ" type="button" class="keyboard-button keyboard-button-r">რ</button>
+            <button data-key="ღ" type="button" class="keyboard-button keyboard-button-r">ღ</button>
+            <button data-key="თ" type="button" class="keyboard-button keyboard-button-t">თ</button>
+            <button data-key="ტ" type="button" class="keyboard-button keyboard-button-t">ტ</button>
+            <button data-key="ყ" type="button" class="keyboard-button keyboard-button-y">ყ</button>
+            <button data-key="უ" type="button" class="keyboard-button keyboard-button-u">უ</button>
+            <button data-key="ი" type="button" class="keyboard-button keyboard-button-i">ი</button>
+            <button data-key="ო" type="button" class="keyboard-button keyboard-button-o">ო</button>
+            <button data-key="პ" type="button" class="keyboard-button keyboard-button-p">პ</button>
+          </div>
+          <div class="keyboard-row keyboard-row-2">
+            <button data-key="ა" type="button" class="keyboard-button keyboard-button-a">ა</button>
+            <button data-key="ს" type="button" class="keyboard-button keyboard-button-s">ს</button>
+            <button data-key="შ" type="button" class="keyboard-button keyboard-button-s">შ</button>
+            <button data-key="დ" type="button" class="keyboard-button keyboard-button-d">დ</button>
+            <button data-key="ფ" type="button" class="keyboard-button keyboard-button-f">ფ</button>
+            <button data-key="გ" type="button" class="keyboard-button keyboard-button-g">გ</button>
+            <button data-key="ჰ" type="button" class="keyboard-button keyboard-button-h">ჰ</button>
+            <button data-key="ჯ" type="button" class="keyboard-button keyboard-button-j">ჯ</button>
+            <button data-key="ჟ" type="button" class="keyboard-button keyboard-button-j">ჟ</button>
+            <button data-key="კ" type="button" class="keyboard-button keyboard-button-k">კ</button>
+            <button data-key="ლ" type="button" class="keyboard-button keyboard-button-ol">ლ</button>
+          </div>
+          <div class="keyboard-row keyboard-row-3">
+            <button (submit)="submitWord()" (click)="submitWord()" data-key="ENTER" type="button" class="keyboard-button keyboard-button-ENTER">ENTER</button>
+            <button data-key="ზ" type="button" class="keyboard-button keyboard-button-z">ზ</button>
+            <button data-key="ძ" type="button" class="keyboard-button keyboard-button-z">ძ</button>
+            <button data-key="ხ" type="button" class="keyboard-button keyboard-button-x">ხ</button>
+            <button data-key="ც" type="button" class="keyboard-button keyboard-button-c">ც</button>
+            <button data-key="ჩ" type="button" class="keyboard-button keyboard-button-c">ჩ</button>
+            <button data-key="ვ" type="button" class="keyboard-button keyboard-button-v">ვ</button>
+            <button data-key="ბ" type="button" class="keyboard-button keyboard-button-b">ბ</button>
+            <button data-key="ნ" type="button" class="keyboard-button keyboard-button-n">ნ</button>
+            <button data-key="მ" type="button" class="keyboard-button keyboard-button-m">მ</button>
+            <button #backSpaceKey2 data-key="Backspace" class="keyboard-button keyboard-button-Backspace">
+              <fa-icon (click)="backSpaceKey2" [icon]="backspaceIcon"></fa-icon>
+            </button>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<div class="settings-popup-wrapper" *ngIf="showSettings">
+  <div class="settings-popup-content">
+    <h3>{{"please select preferred language" | translate: WordleTranslate}}</h3>
+    <div class="settings-languages">
+      <button (click)="wordleLanguage='geo'; showSettings = false">
+        <img alt="flag" [src]="'assets/flags/ge.svg' | Image">
+        Geo
+      </button>
+      <button (click)="wordleLanguage='eng'; showSettings = false">
+        <img alt="flag" [src]="'assets/flags/us.svg' | Image">
+        Eng
+      </button>
     </div>
   </div>
 </div>

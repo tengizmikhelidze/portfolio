@@ -1,8 +1,9 @@
-import {AfterViewInit, Component, HostListener, OnInit, QueryList, ViewChildren} from '@angular/core';
+import {Component, HostListener, QueryList, ViewChildren} from '@angular/core';
 import {IconDefinition} from "@fortawesome/fontawesome-svg-core";
 import {faBackspace, faCog} from "@fortawesome/free-solid-svg-icons";
-import {doc} from "@angular/fire/firestore";
 import {TranslateService} from "../../shared/translate/services/translate.service";
+import {WordleTranslate} from "./translate/transalte";
+import {Translate} from "../../shared/translate/interfaces/translate.interface";
 
 @Component({
   selector: 'app-wordle',
@@ -12,20 +13,23 @@ import {TranslateService} from "../../shared/translate/services/translate.servic
 export class WordleComponent {
   readonly settingsIcon: IconDefinition = faCog
   readonly backspaceIcon: IconDefinition = faBackspace
-  lastFocusedInput!: HTMLInputElement | null
+  readonly WordleTranslate: Translate = WordleTranslate
+  lastFocusedInput!: HTMLInputElement | undefined;
+  wordleLanguage: 'geo' | 'eng' = 'eng';
+  showSettings: boolean = false;
   @ViewChildren('wordInput') inputs!: QueryList<HTMLInputElement>;
 
   constructor(public translateService: TranslateService) {
   }
 
   @HostListener('click', ['$event.target']) onClick(e: any) {
-    if(e instanceof HTMLButtonElement){
+    if(e instanceof HTMLButtonElement && e.dataset["key"]){
       let key = e.dataset["key"];
+
       if(key !== "ENTER" && key !== "Backspace"){
         // @ts-ignore
         this.lastFocusedInput["value"] = key
         for(let input of this.inputs["_results"]){
-          console.log(input.nativeElement.value)
           if(!input.nativeElement.value){
             input.nativeElement.focus();
             this.lastFocusedInput = input.nativeElement;
@@ -33,6 +37,34 @@ export class WordleComponent {
           }
         }
       }
+
+      if(key === "Backspace"){
+        // @ts-ignore
+        for(let index = 0; index < this.inputs["_results"].length; index ++){
+          let input = this.inputs["_results"][index]
+          if(input.nativeElement === this.lastFocusedInput && index !== 0){
+            if(input.nativeElement.value){
+              // @ts-ignore
+              this.lastFocusedInput.value = ""
+              // @ts-ignore
+              this.lastFocusedInput.focus();
+            } else {
+              let previnput = this.inputs["_results"][index-1]
+              if(previnput.nativeElement instanceof HTMLInputElement){
+                previnput.nativeElement.value = ""
+                this.lastFocusedInput = previnput.nativeElement;
+                // @ts-ignore
+                this.lastFocusedInput.focus();
+              }
+            }
+            break;
+          }
+        }
+      }
     }
+  }
+
+  submitWord() {
+    console.log('submit')
   }
 }
