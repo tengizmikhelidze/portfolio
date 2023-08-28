@@ -11,4 +11,11 @@ export const environment: AppConfig = {
     messagingSenderId: '51483704937',
     measurementId: 'G-4CHK10FB3Q',
   },
+  socials: {
+    github: "https://github.com/tengizmikhelidze",
+    facebook: "https://www.facebook.com/tengizmikhelidzefb/",
+    instagram: "https://www.instagram.com/tengo.mikhelidze21/",
+    linkedin: "https://www.linkedin.com/in/tengizmikhelidze/"
+  },
+  apiUrl: "http://localhost:4200"
 };

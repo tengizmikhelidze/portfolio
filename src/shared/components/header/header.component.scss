@@ -1,0 +1,188 @@
+.header {
+  height: 50px;
+  background-color: var(--background_surface);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--page-padding);
+  border-bottom: 1px solid var(--background_surface);
+}
+
+nav {
+  color: var(--text_on_surface);
+  text-transform: uppercase;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    height: 100%;
+
+    li {
+      height: 100%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &.active-link {
+        border-bottom: 1px solid var(--text_on_surface);
+      }
+    }
+  }
+}
+
+.user {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-end;
+  color: var(--text_on_surface);
+  cursor: pointer;
+
+  fa-icon {
+    color: var(--text_on_surface);
+    cursor: pointer;
+  }
+
+  button {
+    background: none;
+    border: none;
+    color: var(--text_on_surface);
+    cursor: pointer;
+  }
+}
+
+.socials {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  background-color: var(--background_surface);
+  border-radius: var(--border-radius);
+  width: 32px;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    li {
+      height: 40px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--text_on_surface);
+        fa-icon {
+          color: var(--background_surface)
+        }
+      }
+
+      &:first-child {
+        border-top-left-radius: var(--border-radius);
+        border-top-right-radius: var(--border-radius);
+      }
+
+      &:last-child {
+        border-bottom-left-radius: var(--border-radius);
+        border-bottom-right-radius: var(--border-radius);
+      }
+      &:not(:last-child){
+        border-bottom: 0.1px solid var(--text_on_surface);
+      }
+    }
+  }
+
+  fa-icon {
+    color: var(--text_on_surface)
+  }
+
+  a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.settings {
+  position: absolute;
+  right: 20px;
+  top: 50px;
+  width: max-content;
+  height: max-content;
+  background-color: var(--background_surface);
+  padding: 5px 0;
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .setting {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 10px;
+    font-size: calc(10px + 0.390625vw);
+    align-items: center;
+    padding: 8px 10px;
+    width: 100%;
+    box-sizing: border-box;
+    &:not(:last-child){
+      border-bottom: 1px solid var(--text_on_surface);
+    }
+
+    &-language, &-theme {
+      .language-wrapper, .theme-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        .language, .theme {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 5px;
+          border: 1px solid var(--text_on_body);
+          padding: 3px 5px;
+          color: var(--text_on_body);
+
+          &.active {
+            background-color: var(--text_on_surface);
+            color: var(--background_surface);
+          }
+
+          &-left {
+            border-top-left-radius: var(--border-radius);
+            border-bottom-left-radius: var(--border-radius);
+          }
+
+          &-right {
+            border-top-right-radius: var(--border-radius);
+            border-bottom-right-radius: var(--border-radius);
+          }
+        }
+      }
+      img {
+        width: 20px;
+        height: 20px;
+        border-radius: var(--border-radius);
+        object-fit: cover;
+      }
+    }
+  }
+}

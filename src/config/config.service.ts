@@ -21,6 +21,7 @@ export class ConfigService {
       .then(config => {
         this.configuration = config as AppConfig;
         for(let key in this.configuration){
+          // @ts-ignore
           environment[key as keyof AppConfig] = this.configuration[key as keyof AppConfig]
         }
       });

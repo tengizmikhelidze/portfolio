@@ -1,0 +1,80 @@
+<div class="header">
+  <nav>
+    <ul>
+      <li routerLink="/wordle" routerLinkActive="active-link">
+        <a>
+          {{"Wordle" | translate: HeaderTranslate}}
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <div class="user">
+    <button type="button" (click)="showSettings = !showSettings">mixelidzet@gmail.com</button>
+    <fa-icon [icon]="userIcon" (click)="showSettings = !showSettings"></fa-icon>
+    <div class="settings" *ngIf="showSettings">
+      <ul>
+        <li class="setting setting-language">
+          <p>{{"Language" | translate: HeaderTranslate}}:</p>
+          <div class="language-wrapper">
+            <div class="language language-left language-geo"
+                 [ngClass]="{active: translateService.language === 'geo'}"
+                 (click)="translateService.changeLang('geo')">
+              <img alt="flag" [src]="'assets/flags/ge.svg' | Image">
+              <p>GEO</p>
+            </div>
+            <div class="language language-right language-eng"
+                 [ngClass]="{active: translateService.language === 'eng'}"
+                 (click)="translateService.changeLang('eng')">
+              <img alt="flag" [src]="'assets/flags/us.svg' | Image">
+              <p>ENG</p>
+            </div>
+          </div>
+        </li>
+        <li class="setting setting-theme">
+          <p>{{"Theme" | translate: HeaderTranslate}}:</p>
+          <div class="theme-wrapper">
+            <div class="theme theme-left theme-geo"
+                 [ngClass]="{active: isDarkTheme}"
+                 (click)="setTheme('dark')">
+              <p>Dark</p>
+            </div>
+            <div class="theme theme-right theme-eng"
+                 [ngClass]="{active: !isDarkTheme}"
+                 (click)="setTheme('light')">
+              <p>Light</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="socials">
+  <ul>
+    <li>
+      <a target="_blank" [href]="environment.socials.linkedin">
+        <fa-icon [icon]="linkedinIcon"></fa-icon>
+      </a>
+    </li>
+
+    <li>
+      <a target="_blank" [href]="environment.socials.github">
+        <fa-icon [icon]="githubIcon"></fa-icon>
+      </a>
+    </li>
+
+    <li>
+      <a target="_blank" [href]="environment.socials.facebook">
+        <fa-icon [icon]="facebookIcon"></fa-icon>
+      </a>
+    </li>
+
+    <li>
+      <a target="_blank" [href]="environment.socials.instagram">
+        <fa-icon [icon]="instagramIcon"></fa-icon>
+      </a>
+    </li>
+
+  </ul>
+</div>

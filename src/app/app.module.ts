@@ -12,6 +12,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import {ConfigService} from "../config/config.service";
 import {appInitializerFn} from "../config/app-initializer";
 import {HttpClientModule} from "@angular/common/http";
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {HeaderModule} from "../shared/components/header/header.module";
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import {HttpClientModule} from "@angular/common/http";
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    })
+    }),
+    FontAwesomeModule,
+    HeaderModule
   ],
   providers: [
     ConfigService,

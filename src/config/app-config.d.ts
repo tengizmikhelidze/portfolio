@@ -9,4 +9,11 @@ export interface AppConfig {
     messagingSenderId: string,
     measurementId: string,
   },
+  socials: {
+    "github" : string,
+    "linkedin" : string,
+    "facebook" : string,
+    "instagram" : string
+  },
+  apiUrl: string
 }

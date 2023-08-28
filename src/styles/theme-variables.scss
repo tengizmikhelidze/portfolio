@@ -1,18 +1,40 @@
-$textColor_light: black;
-$textColor_dark: white;
+$background_body_dark: #222831;
+$background_surface_dark: #393E46;
+$text_on_surface_dark: #00ADB5;
+$text_on_body_dark: #EEEEEE;
+
+$background_body_light: #ffffff;
+$background_surface_light: #1E1E1E;
+$text_on_surface_light: #000000;
+$text_on_body_light: #000000;
 // mixin that enables css variables in light mode
 @mixin lighten() {
-  --textColor: #{$textColor_light};
+  --background_body: #{$background_body_light};
+  --background_surface: #{$background_surface_light};
+
+  --text_on_surface: #{$text_on_surface_light};
+  --text_on_body: #{$text_on_body_light};
 }
 
 // mixin that enables css variables in dark mode
 @mixin darken() {
-  --textColor: #{$textColor_dark};
+  --background_body: #{$background_body_dark};
+  --background_surface: #{$background_surface_dark};
+
+  --text_on_surface: #{$text_on_surface_dark};
+  --text_on_body: #{$text_on_body_dark};
+}
+
+:root {
+  --page-padding: 0 20px;
+  --border-radius: 10px;
 }
 
 body.dark {
   @include darken();
+  background-color: var(--background_body);
 }
 body.light {
   @include lighten();
+  background-color: var(--background_body);
 }
