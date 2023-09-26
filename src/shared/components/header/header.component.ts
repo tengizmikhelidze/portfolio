@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {IconDefinition} from "@fortawesome/fontawesome-svg-core";
 import {faUserCircle} from "@fortawesome/free-regular-svg-icons";
 import {faFacebookF, faGithub, faInstagram, faLinkedinIn} from "@fortawesome/free-brands-svg-icons";

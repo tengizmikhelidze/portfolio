@@ -2,11 +2,13 @@ $background_body_dark: #222831;
 $background_surface_dark: #393E46;
 $text_on_surface_dark: #00ADB5;
 $text_on_body_dark: #EEEEEE;
+$angular_red_dark: #a6120d;
 
 $background_body_light: #ffffff;
 $background_surface_light: #1E1E1E;
 $text_on_surface_light: #000000;
 $text_on_body_light: #000000;
+$angular_red_light: #a6120d;
 // mixin that enables css variables in light mode
 @mixin lighten() {
   --background_body: #{$background_body_light};
@@ -14,6 +16,8 @@ $text_on_body_light: #000000;
 
   --text_on_surface: #{$text_on_surface_light};
   --text_on_body: #{$text_on_body_light};
+
+  --angular_red: #{$angular_red_light};
 }
 
 // mixin that enables css variables in dark mode
@@ -23,6 +27,8 @@ $text_on_body_light: #000000;
 
   --text_on_surface: #{$text_on_surface_dark};
   --text_on_body: #{$text_on_body_dark};
+
+  --angular_red: #{$angular_red_dark};
 }
 
 :root {
